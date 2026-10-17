@@ -1,8 +1,10 @@
 
 import json
+import os
+from pathlib import Path
 
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
 from google import genai
@@ -10,6 +12,28 @@ from google import genai
 
 def home(request):
     return render(request, "assistant/index.html")
+
+
+def service_worker(request):
+    worker_path = (
+        Path(settings.BASE_DIR)
+        / "static"
+        / "assistant"
+        / "service-worker.js"
+    )
+
+    try:
+        worker_code = worker_path.read_text(encoding="utf-8")
+    except OSError:
+        return HttpResponse("Service worker file not found.", status=404)
+
+    response = HttpResponse(
+        worker_code,
+        content_type="application/javascript; charset=utf-8",
+    )
+    response["Service-Worker-Allowed"] = "/"
+    response["Cache-Control"] = "no-cache"
+    return response
 
 
 @require_POST

@@ -1,0 +1,21 @@
+
+{
+  "id": "/",
+  "name": "Verity — Your AI Companion",
+  "short_name": "Verity",
+  "description": "Your personal AI companion for learning, ideas, and conversation.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#15150f",
+  "background_color": "#15150f",
+  "icons": [
+    {
+      "src": "/static/assistant/verity-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

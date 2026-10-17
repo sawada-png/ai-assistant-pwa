@@ -1,4 +1,4 @@
-
+```html
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +9,7 @@
     <meta name="description" content="Meet Verity, your AI companion.">
     <title>Verity — Your AI Companion</title>
     <link rel="stylesheet" href="{% static 'assistant/style.css' %}?v=11">
+    <link rel="manifest" href="{% static 'assistant/manifest.json' %}">
     <script src="{% static 'assistant/app.js' %}?v=11" defer></script>
 </head>
 <body>
@@ -141,5 +142,15 @@
             if (event.target === infoDialog) infoDialog.close();
         });
     </script>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/service-worker.js")
+                    .catch(error => console.error("Verity service worker:", error));
+            });
+        }
+    </script>
 </body>
 </html>
+```
