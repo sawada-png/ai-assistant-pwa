@@ -1,4 +1,4 @@
-```html
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +8,10 @@
     <meta name="theme-color" content="#15150f">
     <meta name="description" content="Meet Verity, your AI companion.">
     <title>Verity — Your AI Companion</title>
-    <link rel="stylesheet" href="{% static 'assistant/style.css' %}?v=11">
+
+    <link rel="stylesheet" href="{% static 'assistant/style.css' %}?v=12">
     <link rel="manifest" href="{% static 'assistant/manifest.json' %}">
-    <script src="{% static 'assistant/app.js' %}?v=11" defer></script>
+    <script src="{% static 'assistant/app.js' %}?v=12" defer></script>
 </head>
 <body>
     <div class="ambient ambient-one"></div>
@@ -25,6 +26,7 @@
                     <p>YOUR PERSONAL AI COMPANION</p>
                 </div>
             </a>
+
             <div class="header-right">
                 <div class="status-pill">
                     <span class="status-dot"></span>
@@ -37,10 +39,12 @@
         <div class="main-layout">
             <aside class="companion-panel" id="verityDisplay">
                 <span class="eyebrow">✦ YOUR COMPANION</span>
+
                 <div class="verity-display">
                     <div class="orb-glow"></div>
                     <div class="orbit orbit-one"></div>
                     <div class="orbit orbit-two"></div>
+
                     <div class="verity-orb">
                         <span class="orb-shine"></span>
                         <div class="face">
@@ -49,14 +53,22 @@
                             <span class="smile"></span>
                         </div>
                     </div>
+
                     <span class="sparkle sparkle-one">✦</span>
                     <span class="sparkle sparkle-two">✧</span>
                     <span class="sparkle sparkle-three">✦</span>
                 </div>
+
                 <p class="companion-caption">HEY, I'M VERITY</p>
                 <h2>Your little<br>AI friend <span>♡</span></h2>
-                <p class="companion-description">I'm here to listen, help you learn, and explore ideas with you.</p>
-                <div class="companion-status"><span class="status-dot"></span> HERE WITH YOU</div>
+                <p class="companion-description">
+                    I'm here to listen, help you learn, and explore ideas with you.
+                </p>
+
+                <div class="companion-status">
+                    <span class="status-dot"></span>
+                    HERE WITH YOU
+                </div>
             </aside>
 
             <section class="chat-panel">
@@ -68,17 +80,28 @@
                             <p>Your helpful little friend <span>♡</span></p>
                         </div>
                     </div>
-                    <button id="clearButton" class="clear-button" type="button">↻ New chat</button>
+
+                    <button id="clearButton" class="clear-button" type="button">
+                        ↻ New chat
+                    </button>
                 </div>
 
                 <div id="chatMessages" class="chat-messages" aria-live="polite">
                     <article class="message assistant-message">
                         <div class="avatar">:)</div>
+
                         <div class="message-content">
-                            <div class="message-label"><span>VERITY</span><span>JUST NOW</span></div>
+                            <div class="message-label">
+                                <span>VERITY</span>
+                                <span>JUST NOW</span>
+                            </div>
+
                             <div class="bubble">
                                 <p>Hiii! You're finally here! ^^</p>
-                                <p>I'm Verity, your personal AI companion. Ask me anything, tell me about your day, or let me help you with something.</p>
+                                <p>
+                                    I'm Verity, your personal AI companion. Ask me anything,
+                                    tell me about your day, or let me help you with something.
+                                </p>
                                 <p>So... what are we doing today? ♡</p>
                             </div>
                         </div>
@@ -87,26 +110,67 @@
 
                 <div class="suggestion-area">
                     <p class="suggestion-title">NOT SURE WHAT TO SAY?</p>
+
                     <div class="suggestions">
-                        <button class="suggestion" type="button" data-prompt="Hey Verity, tell me a little about yourself.">♡ Get to know you</button>
-                        <button class="suggestion" type="button" data-prompt="Help me understand a difficult school topic in simple terms.">✦ Help me study</button>
-                        <button class="suggestion" type="button" data-prompt="I'm bored. Let's have a fun conversation.">☻ Let's hang out</button>
+                        <button
+                            class="suggestion"
+                            type="button"
+                            data-prompt="Hey Verity, tell me a little about yourself."
+                        >
+                            ♡ Get to know you
+                        </button>
+
+                        <button
+                            class="suggestion"
+                            type="button"
+                            data-prompt="Help me understand a difficult school topic in simple terms."
+                        >
+                            ✦ Help me study
+                        </button>
+
+                        <button
+                            class="suggestion"
+                            type="button"
+                            data-prompt="I'm bored. Let's have a fun conversation."
+                        >
+                            ☻ Let's hang out
+                        </button>
                     </div>
                 </div>
 
                 <form id="chatForm" class="composer">
                     {% csrf_token %}
-                    <label for="promptInput" class="composer-label">YOUR MESSAGE</label>
-                    <textarea id="promptInput" rows="2" maxlength="4000" placeholder="Say something to Verity..." required></textarea>
+
+                    <label for="promptInput" class="composer-label">
+                        YOUR MESSAGE
+                    </label>
+
+                    <textarea
+                        id="promptInput"
+                        rows="2"
+                        maxlength="4000"
+                        placeholder="Say something to Verity..."
+                        required
+                    ></textarea>
+
                     <div class="composer-bottom">
-                        <span class="input-hint">↵ ENTER TO SEND · SHIFT + ENTER FOR A NEW LINE</span>
+                        <span class="input-hint">
+                            ↵ ENTER TO SEND · SHIFT + ENTER FOR A NEW LINE
+                        </span>
+
                         <div class="composer-actions">
                             <span id="characterCount">0 / 4000</span>
-                            <button id="sendButton" class="send-button" type="submit">➤ Send</button>
+
+                            <button id="sendButton" class="send-button" type="submit">
+                                ➤ Send
+                            </button>
                         </div>
                     </div>
                 </form>
-                <p class="disclaimer">A LITTLE CONVERSATION CAN GO A LONG WAY ♡</p>
+
+                <p class="disclaimer">
+                    A LITTLE CONVERSATION CAN GO A LONG WAY ♡
+                </p>
             </section>
         </div>
 
@@ -120,12 +184,22 @@
     <dialog id="infoDialog" class="info-dialog">
         <div class="dialog-content">
             <button id="closeInfo" class="dialog-close" type="button">×</button>
+
             <div class="dialog-orb">:)</div>
+
             <span class="eyebrow">A LITTLE INTRODUCTION</span>
             <h2>Hi! I'm Verity. ♡</h2>
-            <p>I'm your AI companion, here to help you learn, answer questions, explore ideas, and keep you company.</p>
+
+            <p>
+                I'm your AI companion, here to help you learn, answer questions,
+                explore ideas, and keep you company.
+            </p>
+
             <p>I'm powered by Gemini AI. Ask me anything.</p>
-            <button id="closeInfoBottom" class="send-button dialog-done" type="button">Let's talk! ♡</button>
+
+            <button id="closeInfoBottom" class="send-button dialog-done" type="button">
+                Let's talk! ♡
+            </button>
         </div>
     </dialog>
 
@@ -138,8 +212,11 @@
         infoButton.addEventListener("click", () => infoDialog.showModal());
         closeInfo.addEventListener("click", () => infoDialog.close());
         closeInfoBottom.addEventListener("click", () => infoDialog.close());
+
         infoDialog.addEventListener("click", event => {
-            if (event.target === infoDialog) infoDialog.close();
+            if (event.target === infoDialog) {
+                infoDialog.close();
+            }
         });
     </script>
 
@@ -147,10 +224,11 @@
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", () => {
                 navigator.serviceWorker.register("/service-worker.js")
-                    .catch(error => console.error("Verity service worker:", error));
+                    .catch(error => {
+                        console.error("Verity service worker:", error);
+                    });
             });
         }
     </script>
 </body>
 </html>
-```
