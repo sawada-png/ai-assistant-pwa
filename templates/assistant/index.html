@@ -5,87 +5,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#111111">
-    <meta name="description" content="An AI-powered learning assistant for students.">
-    <title>AI Assistant | Classmate</title>
-    <link rel="stylesheet" href="{% static 'assistant/style.css' %}">
-    <script src="{% static 'assistant/app.js' %}" defer></script>
+    <meta name="theme-color" content="#15150f">
+    <meta name="description" content="Meet Verity, your AI companion.">
+    <title>Verity — Your AI Companion</title>
+    <link rel="stylesheet" href="{% static 'assistant/style.css' %}?v=11">
+    <script src="{% static 'assistant/app.js' %}?v=11" defer></script>
 </head>
 <body>
-    <main class="app">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="app-shell">
         <header class="topbar">
-            <div class="brand">
-                <div class="brand-icon">✦</div>
-                <div>
-                    <h1>AI ASSISTANT</h1>
-                    <p>Your personal learning companion</p>
+            <a class="brand" href="/">
+                <div class="brand-mark">:)</div>
+                <div class="brand-copy">
+                    <h1>VERITY<span>™</span></h1>
+                    <p>YOUR PERSONAL AI COMPANION</p>
                 </div>
-            </div>
-            <div class="header-actions">
-                <button id="installButton" class="icon-button" hidden aria-label="Install app" title="Install app">⇩</button>
-                <button id="infoButton" class="icon-button" aria-label="About" title="About">ⓘ</button>
+            </a>
+            <div class="header-right">
+                <div class="status-pill">
+                    <span class="status-dot"></span>
+                    <span id="connectionStatus">Connecting...</span>
+                </div>
+                <button id="infoButton" class="icon-button" type="button">?</button>
             </div>
         </header>
 
-        <section class="chat-section">
-            <div class="section-heading">
-                <div>
-                    <span class="eyebrow">YOUR STUDY SPACE</span>
-                    <h2>Class Assistant</h2>
-                </div>
-                <span class="online-indicator"><span></span> Ready to help</span>
-            </div>
-
-            <div id="chatMessages" class="chat-messages" aria-live="polite">
-                <article class="message assistant-message">
-                    <div class="avatar">✦</div>
-                    <div class="message-content">
-                        <div class="message-label">CLASS ASSISTANT <span>JUST NOW</span></div>
-                        <div class="bubble">
-                            <p>Hi there! 👋 Welcome to your study space.</p>
-                            <p>I'm your AI learning assistant. Ask me to explain a difficult topic, summarize a lesson, or help you understand a concept.</p>
-                            <p>What would you like to learn today?</p>
+        <div class="main-layout">
+            <aside class="companion-panel" id="verityDisplay">
+                <span class="eyebrow">✦ YOUR COMPANION</span>
+                <div class="verity-display">
+                    <div class="orb-glow"></div>
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                    <div class="verity-orb">
+                        <span class="orb-shine"></span>
+                        <div class="face">
+                            <span class="eye eye-left"></span>
+                            <span class="eye eye-right"></span>
+                            <span class="smile"></span>
                         </div>
                     </div>
-                </article>
-            </div>
+                    <span class="sparkle sparkle-one">✦</span>
+                    <span class="sparkle sparkle-two">✧</span>
+                    <span class="sparkle sparkle-three">✦</span>
+                </div>
+                <p class="companion-caption">HEY, I'M VERITY</p>
+                <h2>Your little<br>AI friend <span>♡</span></h2>
+                <p class="companion-description">I'm here to listen, help you learn, and explore ideas with you.</p>
+                <div class="companion-status"><span class="status-dot"></span> HERE WITH YOU</div>
+            </aside>
 
-            <div class="suggestions-heading">NEED AN IDEA? TRY ASKING</div>
-            <div class="suggestions">
-                <button class="suggestion" data-prompt="Explain a difficult topic in simple terms.">Explain a topic</button>
-                <button class="suggestion" data-prompt="Give me an example to help me understand a concept.">Give me an example</button>
-                <button class="suggestion" data-prompt="Create a short quiz to test my knowledge.">Quiz me</button>
-            </div>
+            <section class="chat-panel">
+                <div class="panel-header">
+                    <div class="panel-identity">
+                        <div class="mini-orb">:)</div>
+                        <div>
+                            <h3>Chat with Verity</h3>
+                            <p>Your helpful little friend <span>♡</span></p>
+                        </div>
+                    </div>
+                    <button id="clearButton" class="clear-button" type="button">↻ New chat</button>
+                </div>
 
-            <form id="chatForm" class="composer">
-                {% csrf_token %}
-                <label for="promptInput" class="composer-label">YOUR MESSAGE</label>
-                <textarea id="promptInput" rows="3" maxlength="4000" placeholder="Ask a question for class..." required></textarea>
-                <div class="composer-footer">
-                    <span id="characterCount">0 / 4000</span>
-                    <div class="composer-actions">
-                        <button type="button" id="clearButton" class="clear-button">× Clear</button>
-                        <button type="submit" id="sendButton" class="send-button"><span>➤</span> Send</button>
+                <div id="chatMessages" class="chat-messages" aria-live="polite">
+                    <article class="message assistant-message">
+                        <div class="avatar">:)</div>
+                        <div class="message-content">
+                            <div class="message-label"><span>VERITY</span><span>JUST NOW</span></div>
+                            <div class="bubble">
+                                <p>Hiii! You're finally here! ^^</p>
+                                <p>I'm Verity, your personal AI companion. Ask me anything, tell me about your day, or let me help you with something.</p>
+                                <p>So... what are we doing today? ♡</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="suggestion-area">
+                    <p class="suggestion-title">NOT SURE WHAT TO SAY?</p>
+                    <div class="suggestions">
+                        <button class="suggestion" type="button" data-prompt="Hey Verity, tell me a little about yourself.">♡ Get to know you</button>
+                        <button class="suggestion" type="button" data-prompt="Help me understand a difficult school topic in simple terms.">✦ Help me study</button>
+                        <button class="suggestion" type="button" data-prompt="I'm bored. Let's have a fun conversation.">☻ Let's hang out</button>
                     </div>
                 </div>
-            </form>
-        </section>
+
+                <form id="chatForm" class="composer">
+                    {% csrf_token %}
+                    <label for="promptInput" class="composer-label">YOUR MESSAGE</label>
+                    <textarea id="promptInput" rows="2" maxlength="4000" placeholder="Say something to Verity..." required></textarea>
+                    <div class="composer-bottom">
+                        <span class="input-hint">↵ ENTER TO SEND · SHIFT + ENTER FOR A NEW LINE</span>
+                        <div class="composer-actions">
+                            <span id="characterCount">0 / 4000</span>
+                            <button id="sendButton" class="send-button" type="submit">➤ Send</button>
+                        </div>
+                    </div>
+                </form>
+                <p class="disclaimer">A LITTLE CONVERSATION CAN GO A LONG WAY ♡</p>
+            </section>
+        </div>
 
         <footer class="app-footer">
-            <span>✦ CLASS ASSISTANT</span>
-            <span id="connectionStatus">Checking connection...</span>
-            <span>BUILT FOR LEARNING</span>
+            <span>VERITY ♡</span>
+            <span>YOUR WORLD, YOUR COMPANION</span>
+            <span>VERSION 1.0</span>
         </footer>
     </main>
 
     <dialog id="infoDialog" class="info-dialog">
         <div class="dialog-content">
-            <button id="closeInfo" class="dialog-close" aria-label="Close">×</button>
-            <div class="brand-icon">✦</div>
-            <h2>About Class Assistant</h2>
-            <p>A student-focused AI assistant designed to help you understand lessons, explore ideas, and practice what you learn.</p>
-            <p>Gemini AI integration will be configured in the next development step.</p>
+            <button id="closeInfo" class="dialog-close" type="button">×</button>
+            <div class="dialog-orb">:)</div>
+            <span class="eyebrow">A LITTLE INTRODUCTION</span>
+            <h2>Hi! I'm Verity. ♡</h2>
+            <p>I'm your AI companion, here to help you learn, answer questions, explore ideas, and keep you company.</p>
+            <p>I'm powered by Gemini AI. Ask me anything.</p>
+            <button id="closeInfoBottom" class="send-button dialog-done" type="button">Let's talk! ♡</button>
         </div>
     </dialog>
+
+    <script>
+        const infoButton = document.getElementById("infoButton");
+        const infoDialog = document.getElementById("infoDialog");
+        const closeInfo = document.getElementById("closeInfo");
+        const closeInfoBottom = document.getElementById("closeInfoBottom");
+
+        infoButton.addEventListener("click", () => infoDialog.showModal());
+        closeInfo.addEventListener("click", () => infoDialog.close());
+        closeInfoBottom.addEventListener("click", () => infoDialog.close());
+        infoDialog.addEventListener("click", event => {
+            if (event.target === infoDialog) infoDialog.close();
+        });
+    </script>
 </body>
 </html>
